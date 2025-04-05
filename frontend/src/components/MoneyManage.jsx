@@ -16,7 +16,7 @@ const MoneyManage = () => {
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [greeting, setGreeting] = useState("boy");
+  const [greeting, setGreeting] = useState("sir");
 
   const handleExportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(arr);
@@ -34,7 +34,7 @@ const MoneyManage = () => {
 
   // Rotate greeting every 2 seconds
   useEffect(() => {
-    const greetings = ["boy", "man", "dear", "madam", "miss"];
+    const greetings = ["sir", "mam"];
     let currentIndex = 0;
 
     const interval = setInterval(() => {
@@ -262,19 +262,18 @@ const MoneyManage = () => {
             )}
           </form>
         </div>
-
-        <div className="bg-white p-10 rounded-xl shadow-lg">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 border-b pb-2">
+        <div className="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-lg max-w-full">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 border-b pb-2">
               Transaction History
             </h2>
 
             {arr.length > 0 && (
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 {/* Export Button */}
                 <button
                   onClick={handleExportToExcel}
-                  className="bg-green-500 text-white px-3 py-2 rounded-lg text-sm flex items-center hover:bg-green-600 transition-colors shadow-md"
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg text-sm flex items-center justify-center hover:bg-green-600 transition-colors shadow-md"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +295,7 @@ const MoneyManage = () => {
                 {/* Delete All Button */}
                 <button
                   onClick={handleDeleteAll}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm flex items-center shadow-md"
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm flex items-center justify-center shadow-md"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -318,12 +317,12 @@ const MoneyManage = () => {
             )}
           </div>
 
-          <div className="space-y-3 max-h-96 overflow-auto pr-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+          <div className="space-y-3 max-h-[26rem] overflow-auto pr-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
             {sortedTransactions.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+              <div className="flex flex-col items-center justify-center p-6 sm:p-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-12 w-12 text-gray-400 mb-3"
+                  className="h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-3"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -356,6 +355,7 @@ const MoneyManage = () => {
             )}
           </div>
         </div>
+
         {showConfirmation && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-lg shadow-md text-center space-y-4 w-80">
